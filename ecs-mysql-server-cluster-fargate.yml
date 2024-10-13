@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A template used to create a fargate ECS Cluster.
+Parameters:
+  ECSClusterName:
+    Type: String
+    Description: Specifies the ECS Cluster Name with which the resources would be associated
+    Default: ecs-mysql-server-cluster
+Resources:
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName:
+        Ref: ECSClusterName
+      CapacityProviders:
+        - FARGATE
+        - FARGATE_SPOT
+      ClusterSettings:
+        - Name: containerInsights
+          Value: disabled
+      ServiceConnectDefaults:
+        Namespace: cluster-mysql-server
+      Tags: []
+Outputs:
+  ECSCluster:
+    Description: The created cluster.
+    Value:
+      Ref: ECSCluster
+
+
