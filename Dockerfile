@@ -5,7 +5,7 @@ ENV MYSQL_ROOT_PASSWORD=welcome
 ENV MYSQL_USER=mysqluser
 ENV MYSQL_PASSWORD=welcome
 
-ADD mysql_init.sql /docker-entrypoint-initdb.d
+ADD ./sql-script/mysql_init.sql /docker-entrypoint-initdb.d
 
 # Expose port 3306 to allow connections to the database
 EXPOSE 3306

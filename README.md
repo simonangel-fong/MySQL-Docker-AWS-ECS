@@ -12,24 +12,6 @@ A project to deploy MySQL Server via AWS ECS.
 
 ## Local Dockerize MySQL Server
 
-- Dockfile:
-
-```Dockerfile
-# Use the official MySQL image as a base
-FROM mysql:latest
-
-ENV MYSQL_ROOT_PASSWORD=welcome
-ENV MYSQL_USER=mysqluser
-ENV MYSQL_PASSWORD=welcome
-
-ADD mysql_init.sql /docker-entrypoint-initdb.d
-
-# Expose port 3306 to allow connections to the database
-EXPOSE 3306
-```
-
----
-
 - Build Image
 
 ```sh
@@ -49,7 +31,8 @@ docker rmi mysqldb
 ```sh
 # -t: run at the bg
 # -v: using volume to persist data
-docker container run -itd -p 3307:3306 -v ./mysql_data:/var/lib/mysql --name mysqldb_con mysqldb
+docker container run -itd -p 3310:3306 -v ./mysql_data:/var/lib/mysql --name mysqldb_con mysqldb
+docker container run -itd -v ./mysql_data:/var/lib/mysql --name mysqldb_con mysqldb
 docker container rm -f mysqldb_con
 ```
 
